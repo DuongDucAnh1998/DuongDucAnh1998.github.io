@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Concurrency trong Go: Sử dụng channel để trao đổi dữ liệu giữa các goroutine</title>
+    <link rel="stylesheet" href="Web1.css" />
+    <link rel="shortcut icon"
+        href="https://banner2.cleanpng.com/20180315/vrq/kisspng-logo-lion-shutterstock-red-gradient-lionhead-5aab05d93512d0.9761940315211575932174.jpg"
+        type="image/x-icon" />
+</head>
+
+<body>
+    <div id="contain">
+        <div id="main">
+
+            <div id="content">
+                <div id="img-top-category">
+                    <a href="https://www.elle.vn/the-gioi-thoi-trang/tai-khoan-instagram-thoi-trang-phap">
+                        <img class="center"
+                            src="https://www.elle.vn/wp-content/uploads/2020/04/03/395882/10-tai-khoan-instagram-tin-do-thoi-trang-Phap.jpg"
+                            width="100%">
+                    </a>
+                    <h2 class="title-category-first">10 KÊNH INSTAGRAM TÍN ĐỒ THỜI TRANG PHÁP KHÔNG THỂ BỎ QUA</h2>
+                </div>
+            </div>
+
+            <div id="side-bar">
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2019/01/16/elle-viet-nam-goi-ten-quan-jeans-2-490x276.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">ÁO CỔ LỌ VÀ
+                                VÁY SLIP DRESS – BÍ QUYẾT PHỐI ĐỒ SÀNH ĐIỆU CHO NGÀY GIAO MÙA</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2018/11/05/elle-viet-nam-ao-co-lo-vay-slip-dress-thumb-490x276.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">CÁCH PHỐI MÀU
+                                QUẦN ÁO GIÚP NÀNG LAN TỎA NĂNG LƯỢNG TÍCH CỰC</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2020/03/07/375900/cach-phoi-mau-quan-ao-490x276.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">ANKLE BOOTS -
+                                MẢNH GHÉP HOÀN HẢO CHO MỌI OUTFIT MÙA LẠNH</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2019/11/08/374276/cach-phoi-do-thu-dong-voi-ankle-boots-490x276.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">BẠN ĐÃ GỌI
+                                ĐÚNG TÊN CỦA 6 THIẾT KẾ QUẦN JEANS KINH ĐIỂN?</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="main-2">
+            <div id="content-2">
+                <div id="content">
+                    <div id="img-top-category">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/tai-khoan-instagram-thoi-trang-phap">
+                            <img class="center"
+                                src="https://www.elle.vn/wp-content/uploads/2020/04/03/395882/10-tai-khoan-instagram-cua-cac-tin-do-thoi-trang-Phap-445x250.jpg"
+                                width="100%">
+                        </a>
+                        <h2 class="title-category-first">10 KÊNH INSTAGRAM TÍN ĐỒ THỜI TRANG PHÁP KHÔNG THỂ BỎ QUA</h2>
+                    </div>
+                </div>
+
+            </div>
+            <div id="side-bar-2">
+                <div id="side-bar-top">
+                    <div class="new-1">
+                        <div class="content-category__inner row">
+                            <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                                class="post-item__thumb img_16_9">
+                                <img class="img-responsive"
+                                    src="https://www.elle.vn/wp-content/uploads/2019/01/16/elle-viet-nam-goi-ten-quan-jeans-2-445x250.jpg"
+                                    width="100%">
+                            </a>
+                        </div>
+
+                        <div class="content-category__inner row">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                                <a class="title-category"
+                                    href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                    gọi
+                                    đúng
+                                    tên của 6 thiết kế quần jeans kinh điển?</a>
+                            </a>
+                            <div class="text-category">
+                                Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                                đa
+                                dạng... </div>
+                        </div>
+                    </div>
+
+                    <div class="new-1">
+                        <div class="content-category__inner row">
+                            <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                                class="post-item__thumb img_16_9">
+                                <img class="img-responsive"
+                                    src="https://www.elle.vn/wp-content/uploads/2018/11/05/elle-viet-nam-ao-co-lo-vay-slip-dress-thumb-445x250.jpg"
+                                    width="100%">
+                            </a>
+                        </div>
+
+                        <div class="content-category__inner row">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                                <a class="title-category"
+                                    href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">ÁO CỔ LỌ
+                                    VÀ
+                                    VÁY SLIP DRESS – BÍ QUYẾT PHỐI ĐỒ SÀNH ĐIỆU CHO NGÀY GIAO MÙA</a>
+                            </a>
+                            <div class="text-category">
+                                Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                                đa
+                                dạng... </div>
+                        </div>
+                    </div>
+
+                    <div class="new-1">
+                        <div class="content-category__inner row">
+                            <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                                class="post-item__thumb img_16_9">
+                                <img class="img-responsive"
+                                    src="https://www.elle.vn/wp-content/uploads/2020/03/07/375900/cach-phoi-mau-quan-ao-445x250.jpg"
+                                    width="100%">
+                            </a>
+                        </div>
+
+                        <div class="content-category__inner row">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                                <a class="title-category"
+                                    href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">CÁCH PHỐI
+                                    MÀU
+                                    QUẦN ÁO GIÚP NÀNG LAN TỎA NĂNG LƯỢNG TÍCH CỰC</a>
+                            </a>
+                            <div class="text-category">
+                                Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                                đa
+                                dạng... </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-3">
+            <div id="content-col-1">
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2020/12/03/422266/1-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">SỨC MẠNH CỦA
+                                NGƯỜI PHỤ NỮ ẨN GIẤU TRONG BST GIÀY REEBOK X WONDER WOMAN</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2020/11/30/422224/01_Thumb-445x250.png"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2019/11/08/374276/cach-phoi-do-thu-dong-voi-ankle-boots-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-col-2">
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2020/12/01/422244/bst-thoi-trang-la-la-land-thumb1-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2019/05/28/giay-sneakers-kinh-dien-converse-4-mau-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2019/12/17/382490/bi-quyet-chon-dam-du-tiec-phu-hop-tung-voc-dang-1-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-col-3">
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2019/01/11/Paris-str-B2-RS19-0773-1600x1000-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2020/03/23/394343/cach-chon-giay-tang-chieu-cao-chien-dich-quang-ba-dolcegabbana-xuan-he-2017-2-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                                src="https://www.elle.vn/wp-content/uploads/2020/03/26/395173/cach-mac-dep-giup-ban-thon-gon-hon-cua-selena-gomez-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-4">
+            <div id="content-col-4">
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                            src="https://www.elle.vn/wp-content/uploads/2020/04/17/397662/xay-dung-phong-cach-thoi-trang-Phap-tu-mon-do-co-ban-2-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                            src="https://www.elle.vn/wp-content/uploads/2020/04/04/396337/nhung-phim-Han-Quoc-co-thoi-trang-dep-Crash-Landing-On-You-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="content-col-5">
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                            src="https://www.elle.vn/wp-content/uploads/2020/03/03/392528/cac-cach-mac-dep-voi-ao-blazer-ke-o-1-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                            src="https://www.elle.vn/wp-content/uploads/2019/07/23/350370/xay-dung-tu-do-con-nhong-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="content-col-6">
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                            src="https://www.elle.vn/wp-content/uploads/2019/08/22/thumb-ngang-cach-phoi-do-voi-kep-ngoc-trai-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+                <div class="new-1">
+                    <div class="content-category__inner row">
+                        <a href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans"
+                            class="post-item__thumb img_16_9">
+                            <img class="img-responsive"
+                            src="https://www.elle.vn/wp-content/uploads/2020/11/18/422023/Facade-445x250.jpg"
+                                width="100%">
+                        </a>
+                    </div>
+
+                    <div class="content-category__inner row">
+                        <a class="title-category"
+                            href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">
+                            <a class="title-category"
+                                href="https://www.elle.vn/the-gioi-thoi-trang/goi-ten-thiet-ke-quan-jeans">Bạn đã
+                                gọi
+                                đúng
+                                tên của 6 thiết kế quần jeans kinh điển?</a>
+                        </a>
+                        <div class="text-category">
+                            Dù “phủ sóng” khắp dòng chảy thời trang, việc “điểm mặt gọi tên” các thiết kế quần jeans
+                            đa
+                            dạng... </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
