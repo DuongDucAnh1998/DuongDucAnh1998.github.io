@@ -1,0 +1,149 @@
+body {
+  background-color: #0d021a;
+}
+
+.container {
+  margin: auto;
+  width: 1080px;
+  height: auto;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar-search [type=text] {
+  width: 500px;
+  height: 30px;
+  border-radius: 30px;
+background-color: #281944;
+}
+
+.top-bar-logo {
+  width: 150px;
+}
+
+.top-bar-logo img {
+  height:40px;
+  width: auto;
+}
+
+.top-bar-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.top-bar-avatar img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.menu-bar-list {
+    display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+
+
+.menu-bar-list li {
+    list-style-type: none;
+    
+  margin-right: auto;
+  }
+
+  .menu-bar-list a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+
+.zingchart-menu-bar-list {
+  position: absolute;
+  display: none;
+}
+
+.zingchart-menu-bar-list {
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+ border-radius: 10px;
+  background-color: #190032;
+  
+
+ 
+}
+
+.zingchart-menu-bar-list ul {
+  
+    
+    margin-right: 30px;
+    
+  }
+
+
+
+.zingchart-menu-bar-list ul li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  color: white;
+ 
+  
+}
+
+.zingchart-menu-bar-list ul li:hover {
+    background-color: #301A47;
+  }
+
+.menu-bar-list li:hover .zingchart-menu-bar-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.banner img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.content-row-1 {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+h1 {
+  color: white;
+}
+
+.content-row-1-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.content-item {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.content-item img {
+  width: 98%;
+  border-radius: 10px;
+}
+
+h4 {
+  color: white;
+}
+
+
+
+
+
+
+
+
