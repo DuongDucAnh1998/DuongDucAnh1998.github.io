@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.red {
+    height: 400px;
+    width: 67%;
+    background-color: red;
+}
+
+.colors {
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+
+.green {
+    width: 100%;
+    height: 200px;
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+    width: 100%;
+    height: 200px;
+}
+
+
+
+.content-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.red-2 {
+    height: 400px;
+    width: 67%;
+    background-color: red;
+    margin-right: 15px;
+}
+
+.colors-2 {
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+
+.green-2 {
+    width: 100%;
+    height: 200px;
+    background-color: green;
+}
+
+.blue-2 {
+    background-color: blue;
+    width: 100%;
+    height: 200px;
+}
+
+.content-3 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.red-3 {
+    height: 400px;
+    width: 33.33%;
+    background-color: red;
+}
+
+.green-3 {
+    height: 400px;
+    width: 33.33%;
+    background-color: green;
+}
+
+.blue-3 {
+    height: 400px;
+    width: 33.33%;
+    background-color: blue;
+}
+
+.content-4 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.red-4 {
+    height: 400px;
+    width: 34%;
+    background-color: red;
+    margin-right:15px ;
+}
+
+.green-4 {
+    height: 400px;
+    width: 34%;
+    background-color: green;
+}
+
+.blue-4 {
+    height: 400px;
+    width: 34%;
+    background-color: blue;
+    margin-left:15px ;
+}
+
