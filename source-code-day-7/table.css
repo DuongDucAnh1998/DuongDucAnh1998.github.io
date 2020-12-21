@@ -1,0 +1,17 @@
+.table, th, td {
+    border-style: dotted;
+   padding: 20px;
+    height: 100px;
+    width: 200px;
+    border-collapse:collapse;
+
+}
+
+.th, tr {
+    border:1px solid black;
+    empty-cells: inherit;
+}
+
+td {
+    border-collapse: collapse;
+}
