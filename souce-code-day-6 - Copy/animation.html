@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+
+.duc-anh {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 48px;
+    color: gray;
+    font-weight: bold;
+}
+
+    
+
+
+.text-2::before {
+content: "LEARNING";
+animation: change 3s infinite;
+}
+
+.text-2 {
+      width: 100px;
+  height: 100px;
+  position: relative;
+color:white;
+
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 48px;
+
+
+}
+
+@keyframes change { 
+  
+  0% { 
+      content: "LEARNING"; 
+      background-color: green;
+      
+  } 
+
+  20% { 
+      content: "CODING"; 
+      background-color: orangered;
+      
+
+  } 
+
+  40% { 
+      content: "TEACHING"; 
+      background-color: purple;
+     
+  } 
+
+  60% { 
+      content: "LEARNING"; 
+      background-color: green
+  } 
+
+  80% { 
+      content: "CODING"; 
+      background-color: orangered;
+  } 
+
+  100% { 
+      content: "TEACHING"; 
+      background-color: purple;
+  } 
+} 
+
+
+
+
+
+
+
+</style>
+<body>
+    <div class="duc-anh">
+    <div class="start">START</div>
+    <div class="text-2"></div>
+    <div class="today">TODAY</div>
+</div>
+</html>
